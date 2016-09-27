@@ -14,6 +14,11 @@ public extension String {
     func dateFromFormat(format: String) -> NSDate? {
         let formatter = NSDateFormatter()
         formatter.dateFormat = format
+
+        // Parse AM/PM time correctly
+        // cf. https://developer.apple.com/library/content/qa/qa1480/_index.html
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+
         return formatter.dateFromString(self)
     }
 }
